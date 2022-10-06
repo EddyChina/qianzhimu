@@ -5,13 +5,13 @@ import ${package}.entity.${className};
     <#list columns as column>
         <#if column.columnKey = 'UNI'>
             <#if column_index = 1>
-import com.perye.dokit.exception.EntityExistException;
+import exception.com.qianzhimu.website.EntityExistException;
             </#if>
         </#if>
     </#list>
 </#if>
-import com.perye.dokit.utils.ValidationUtil;
-import com.perye.dokit.utils.FileUtil;
+import utils.com.qianzhimu.website.ValidationUtil;
+import utils.com.qianzhimu.website.FileUtil;
 import lombok.RequiredArgsConstructor;
 import ${package}.repository.${className}Repository;
 import ${package}.service.${className}Service;
@@ -29,8 +29,8 @@ import cn.hutool.core.util.IdUtil;
 </#if>
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.perye.dokit.utils.PageUtil;
-import com.perye.dokit.utils.QueryHelp;
+import utils.com.qianzhimu.website.PageUtil;
+import utils.com.qianzhimu.website.QueryHelp;
 import java.util.List;
 import java.util.Map;
 import java.io.IOException;

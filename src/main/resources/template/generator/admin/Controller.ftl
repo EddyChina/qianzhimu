@@ -1,6 +1,6 @@
 package ${package}.controller;
 
-import com.perye.dokit.annotation.Log;
+import annotation.com.qianzhimu.website.Log;
 import ${package}.entity.${className};
 import ${package}.service.${className}Service;
 import ${package}.query.${className}QueryCriteria;

@@ -1,6 +1,6 @@
 package ${package}.mapstruct;
 
-import com.perye.dokit.base.BaseMapper;
+import base.com.qianzhimu.website.BaseMapper;
 import ${package}.entity.${className};
 import ${package}.dto.${className}Dto;
 import org.mapstruct.Mapper;

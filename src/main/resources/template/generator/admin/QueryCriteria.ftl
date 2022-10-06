@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.List;
 </#if>
 <#if queryColumns??>
-import com.perye.dokit.annotation.Query;
+import annotation.com.qianzhimu.website.Query;
 </#if>
 
 @Data
