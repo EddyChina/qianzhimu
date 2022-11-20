@@ -1,6 +1,6 @@
 package ${package}.controller;
 
-import annotation.com.qianzhimu.website.Log;
+import annotation.com.qianzhimu.mgt.Log;
 import ${package}.entity.${className};
 import ${package}.service.${className}Service;
 import ${package}.query.${className}QueryCriteria;

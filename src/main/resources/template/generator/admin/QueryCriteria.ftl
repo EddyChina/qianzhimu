@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.List;
 </#if>
 <#if queryColumns??>
-import annotation.com.qianzhimu.website.Query;
+import annotation.com.qianzhimu.mgt.Query;
 </#if>
 
 @Data
