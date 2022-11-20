@@ -22,6 +22,9 @@ public class VerifyCodeUtils{
     private static final String VERIFY_CODES = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
     private static Random random = new Random();
 
+    public static void main(String[] args) {
+        System.out.println(generateVerifyCode(32));
+    }
 
     /**
      * 使用系统默认字符源生成验证码

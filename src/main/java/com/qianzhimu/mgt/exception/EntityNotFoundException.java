@@ -8,6 +8,10 @@ public class EntityNotFoundException extends RuntimeException {
         super(EntityNotFoundException.generateMessage(clazz.getSimpleName(), field, val));
     }
 
+    public EntityNotFoundException(String message) {
+        super(message);
+    }
+
     private static String generateMessage(String entity, String field, String val) {
         return StringUtils.capitalize(entity)
                 + " with " + field + " "+ val + " does not exist";

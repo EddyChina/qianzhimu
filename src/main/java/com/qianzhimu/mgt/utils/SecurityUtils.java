@@ -38,7 +38,6 @@ public class SecurityUtils {
     }
 
 
-
     /**
      * 获取系统用户名称
      * @return 系统用户名称

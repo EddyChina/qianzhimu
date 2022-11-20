@@ -10,8 +10,15 @@ public class RsaProperties {
 
     public static String privateKey;
 
+    public static String md5Key;
+
     @Value("${rsa.private_key}")
     public void setPrivateKey(String privateKey) {
         RsaProperties.privateKey = privateKey;
+    }
+
+    @Value("${rsa.md5_key}")
+    public void setMd5Key(String md5Key) {
+        RsaProperties.md5Key = md5Key;
     }
 }

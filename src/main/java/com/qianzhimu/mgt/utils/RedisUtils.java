@@ -1,5 +1,6 @@
 package com.qianzhimu.mgt.utils;
 
+import com.qianzhimu.ows.entity.OwsAccount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,8 +27,20 @@ public class RedisUtils {
     @Value("${jwt.online-key}")
     private String onlineKey;
 
+    @Value("ows:token:")
+    private String owsTokenPrefix;
+
     public RedisUtils(RedisTemplate<Object, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
+    }
+
+    public void setOwsToken(String token, long id, long expire) {
+        this.set(owsTokenPrefix + token, id, expire);
+    }
+
+    public Long getOwsToken(String token) {
+        Object o = this.get(owsTokenPrefix + token);
+        return o != null ? (Long)o : null;
     }
 
     /**
