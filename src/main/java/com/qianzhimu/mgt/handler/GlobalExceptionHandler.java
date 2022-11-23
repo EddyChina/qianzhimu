@@ -1,8 +1,11 @@
 package com.qianzhimu.mgt.handler;
 
+import com.qianzhimu.mgt.base.Response;
 import com.qianzhimu.mgt.exception.BadRequestException;
+import com.qianzhimu.mgt.exception.CommonBizException;
 import com.qianzhimu.mgt.exception.EntityExistException;
-import com.qianzhimu.mgt.utils.ThrowableUtil;
+import com.qianzhimu.mgt.exception.OverRateLimitException;
+import com.qianzhimu.api.utils.ThrowableUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -11,10 +14,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.persistence.EntityNotFoundException;
-
 import java.util.Objects;
 
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.valueOf;
 
 @Slf4j
 @RestControllerAdvice
@@ -26,7 +29,19 @@ public class GlobalExceptionHandler {
      * @return
      */
     private ResponseEntity<ApiError> buildResponseEntity(ApiError apiError) {
-        return new ResponseEntity<>(apiError, valueOf(apiError.getStatus()));
+        return new ResponseEntity<>(apiError, valueOf(apiError.getCode()));
+    }
+
+    @ExceptionHandler(CommonBizException.class)
+    public Response commonBizException(CommonBizException e) {
+        log.error(ThrowableUtil.getStackTrace(e));
+        return e.getResponse();
+    }
+
+    @ExceptionHandler(OverRateLimitException.class)
+    public Response overRateLimit(OverRateLimitException e) {
+        log.error(ThrowableUtil.getStackTrace(e));
+        return e.getResponse();
     }
 
     /**
@@ -83,10 +98,10 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(value = EntityNotFoundException.class)
-    public ResponseEntity<ApiError> entityNotFoundException(EntityNotFoundException e) {
+    public Response entityNotFoundException(EntityNotFoundException e) {
         // 打印堆栈信息
         log.error(ThrowableUtil.getStackTrace(e));
-        return buildResponseEntity(ApiError.error(NOT_FOUND.value(),e.getMessage()));
+        return Response.of(NOT_FOUND.value(), e.getMessage());
     }
 
     /**

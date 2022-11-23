@@ -16,10 +16,10 @@ public class TradeMarkerQueryCriteria implements Serializable {
     private Integer category;
 
     @Query(propName = "contentType", type = Query.Type.IN)
-    private Set<String> contentTypeSet = new HashSet<>(16);
+    private Set<String> contentType = new HashSet<>(16);
 
     @Query(propName = "tagPrice", type = Query.Type.BETWEEN)
-    private List<Double> tagPrices = new ArrayList<>(2);
+    private List<Double> tagPrice = new ArrayList<>(2);
 
     @Query(type = Query.Type.EQUAL)
     private Integer lengthRanger;

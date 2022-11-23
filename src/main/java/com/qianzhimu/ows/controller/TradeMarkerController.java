@@ -1,5 +1,6 @@
 package com.qianzhimu.ows.controller;
 
+import com.qianzhimu.mgt.base.Response;
 import com.qianzhimu.ows.query.TradeMarkerQueryCriteria;
 import com.qianzhimu.ows.service.TradeMarkerService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class TradeMarkerController {
     private final TradeMarkerService tradeMarkerService;
 
     @GetMapping("/list")
-    public ResponseEntity<Object> query(TradeMarkerQueryCriteria criteria, Pageable pageable) {
-        return new ResponseEntity<>(this.tradeMarkerService.queryAll(criteria, pageable), HttpStatus.OK);
+    public Response query(TradeMarkerQueryCriteria criteria, Pageable pageable) {
+        return Response.SUCCESS(this.tradeMarkerService.queryAll(criteria, pageable));
     }
 }

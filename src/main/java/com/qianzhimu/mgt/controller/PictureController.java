@@ -4,7 +4,7 @@ import com.qianzhimu.mgt.annotation.Log;
 import com.qianzhimu.mgt.query.PictureQueryCriteria;
 import com.qianzhimu.mgt.entity.Picture;
 import com.qianzhimu.mgt.service.PictureService;
-import com.qianzhimu.mgt.utils.SecurityUtils;
+import com.qianzhimu.api.utils.SecurityUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

@@ -6,7 +6,7 @@ import com.qianzhimu.mgt.entity.EmailConfig;
 import com.qianzhimu.mgt.exception.BadRequestException;
 import com.qianzhimu.mgt.repository.EmailRepository;
 import com.qianzhimu.mgt.service.EmailService;
-import com.qianzhimu.mgt.utils.EncryptUtils;
+import com.qianzhimu.api.utils.EncryptUtils;
 import com.qianzhimu.mgt.vo.EmailVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;

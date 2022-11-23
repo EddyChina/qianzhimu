@@ -1,17 +1,17 @@
 package com.qianzhimu.ows.service.impl;
 
 import com.qianzhimu.mgt.config.RsaProperties;
-import com.qianzhimu.mgt.exception.EntityExistException;
-import com.qianzhimu.mgt.utils.RsaUtils;
+import com.qianzhimu.api.utils.RsaUtils;
 import com.qianzhimu.ows.dto.OwsAccountDTO;
 import com.qianzhimu.ows.entity.OwsAccount;
-import com.qianzhimu.ows.mapper.OwsAccountMapper;
+import com.qianzhimu.ows.mapstruct.OwsAccountMapper;
 import com.qianzhimu.ows.repository.OwsAccountRepository;
 import com.qianzhimu.ows.service.OwsAccountService;
 import com.qianzhimu.ows.vo.OwsAccountRegisterVO;
 import com.qiniu.util.Md5;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -33,11 +33,12 @@ public class OwsAccountServiceImpl implements OwsAccountService {
     }
 
     @Override
-    public OwsAccountDTO register(OwsAccountRegisterVO resources) throws Exception{
-        if (this.accountRepository.findByPhone(resources.getPhone()) != null) {
-            throw new EntityExistException(OwsAccount.class, "phone", resources.getPhone());
-        }
+    public OwsAccount get(long id) {
+        return this.accountRepository.getOne(id);
+    }
 
+    @Override
+    public OwsAccountDTO register(OwsAccountRegisterVO resources) throws Exception{
         // 密码解密
         String password = RsaUtils.decryptByPrivateKey(RsaProperties.privateKey, resources.getPassword());
         // 验证用户名 密码
@@ -58,6 +59,7 @@ public class OwsAccountServiceImpl implements OwsAccountService {
     }
 
     @Override
+    @Transactional
     public void updatePass(long id, String encryptPassword) {
         this.accountRepository.updatePass(id, encryptPassword);
     }

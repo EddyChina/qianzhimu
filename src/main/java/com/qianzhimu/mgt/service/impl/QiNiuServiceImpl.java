@@ -3,6 +3,7 @@ package com.qianzhimu.mgt.service.impl;
 //import com.google.gson.Gson;
 
 import com.alibaba.fastjson.JSON;
+import com.qianzhimu.api.utils.*;
 import com.qianzhimu.mgt.entity.QiniuConfig;
 import com.qianzhimu.mgt.entity.QiniuContent;
 import com.qianzhimu.mgt.exception.BadRequestException;
@@ -10,7 +11,6 @@ import com.qianzhimu.mgt.query.QiniuQueryCriteria;
 import com.qianzhimu.mgt.repository.QiNiuConfigRepository;
 import com.qianzhimu.mgt.repository.QiniuContentRepository;
 import com.qianzhimu.mgt.service.QiNiuService;
-import com.qianzhimu.mgt.utils.*;
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 import com.qiniu.storage.BucketManager;

@@ -8,7 +8,7 @@ import com.qianzhimu.mgt.dto.RoleSmallDto;
 import com.qianzhimu.mgt.entity.Role;
 import com.qianzhimu.mgt.exception.BadRequestException;
 import com.qianzhimu.mgt.service.RoleService;
-import com.qianzhimu.mgt.utils.SecurityUtils;
+import com.qianzhimu.api.utils.SecurityUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

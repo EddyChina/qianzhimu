@@ -1,5 +1,6 @@
 package com.qianzhimu.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.qianzhimu.mgt.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,21 +39,48 @@ public class TradeMarker extends BaseEntity implements Serializable {
     private String contentType;
 
     @NotBlank
+    @JsonIgnore
     private Date regDate;
 
     @NotBlank
+    @JsonIgnore
     private Date validDate;
 
+    @JsonIgnore
     private String regUserName;
+
+    @JsonIgnore
     private String regUserContact;
+
+    @JsonIgnore
     private String ownerUserName;
+
+    @JsonIgnore
     private String ownerContact;
     private Integer ownerHolderCnt;
 
     private String picPath;
 
+    @JsonIgnore
     private Double tagPrice;
+
+    @JsonIgnore
     private Double floorPrice;
 
     private Integer lengthRanger;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TradeMarker that = (TradeMarker) o;
+
+        return regId.equals(that.regId);
+    }
+
+    @Override
+    public int hashCode() {
+        return regId.hashCode();
+    }
 }

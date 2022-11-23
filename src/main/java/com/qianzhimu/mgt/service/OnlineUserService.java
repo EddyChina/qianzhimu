@@ -1,7 +1,7 @@
 package com.qianzhimu.mgt.service;
 
+import com.qianzhimu.api.utils.*;
 import com.qianzhimu.mgt.config.bean.SecurityProperties;
-import com.qianzhimu.mgt.utils.*;
 import com.qianzhimu.mgt.vo.JwtUserDto;
 import com.qianzhimu.mgt.vo.OnlineUserDto;
 import lombok.extern.slf4j.Slf4j;

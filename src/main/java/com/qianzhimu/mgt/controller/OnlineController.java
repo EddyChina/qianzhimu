@@ -2,7 +2,7 @@ package com.qianzhimu.mgt.controller;
 
 import com.qianzhimu.mgt.annotation.Log;
 import com.qianzhimu.mgt.service.OnlineUserService;
-import com.qianzhimu.mgt.utils.EncryptUtils;
+import com.qianzhimu.api.utils.EncryptUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

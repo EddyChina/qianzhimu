@@ -1,7 +1,7 @@
 package com.qianzhimu.mgt.config.bean;
 
 import com.qianzhimu.mgt.exception.BadConfigurationException;
-import com.qianzhimu.mgt.utils.StringUtils;
+import com.qianzhimu.api.utils.StringUtils;
 import com.wf.captcha.*;
 import com.wf.captcha.base.Captcha;
 import lombok.Data;

@@ -3,7 +3,7 @@ package com.qianzhimu.mgt.service.impl;
 import com.qianzhimu.mgt.entity.GenConfig;
 import com.qianzhimu.mgt.repository.GenConfigRepository;
 import com.qianzhimu.mgt.service.GenConfigService;
-import com.qianzhimu.mgt.utils.StringUtils;
+import com.qianzhimu.api.utils.StringUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

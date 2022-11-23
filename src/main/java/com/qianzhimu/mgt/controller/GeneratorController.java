@@ -4,7 +4,7 @@ import com.qianzhimu.mgt.entity.ColumnInfo;
 import com.qianzhimu.mgt.exception.BadRequestException;
 import com.qianzhimu.mgt.service.GenConfigService;
 import com.qianzhimu.mgt.service.GeneratorService;
-import com.qianzhimu.mgt.utils.PageUtil;
+import com.qianzhimu.api.utils.PageUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

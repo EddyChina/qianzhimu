@@ -1,6 +1,6 @@
 package com.qianzhimu.mgt.config.xss;
 
-import com.qianzhimu.mgt.utils.StringUtils;
+import com.qianzhimu.api.utils.StringUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

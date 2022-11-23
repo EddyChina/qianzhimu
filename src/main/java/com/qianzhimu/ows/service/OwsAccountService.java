@@ -26,6 +26,8 @@ public interface OwsAccountService {
      */
     OwsAccountDTO findById(long id);
 
+    OwsAccount get(long id);
+
     /**
      * 新增用户
      * @param resources /

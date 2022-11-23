@@ -1,6 +1,6 @@
 package com.qianzhimu.mgt.entity;
 
-import com.qianzhimu.mgt.utils.GenUtil;
+import com.qianzhimu.api.utils.GenUtil;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,7 @@
 package com.qianzhimu.mgt.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.qianzhimu.api.utils.*;
 import com.qianzhimu.mgt.dto.DictDetailDto;
 import com.qianzhimu.mgt.dto.DictDto;
 import com.qianzhimu.mgt.entity.Dict;
@@ -8,7 +9,6 @@ import com.qianzhimu.mgt.mapstruct.DictMapper;
 import com.qianzhimu.mgt.query.DictQueryCriteria;
 import com.qianzhimu.mgt.repository.DictRepository;
 import com.qianzhimu.mgt.service.DictService;
-import com.qianzhimu.mgt.utils.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.data.domain.Page;

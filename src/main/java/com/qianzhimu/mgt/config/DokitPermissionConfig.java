@@ -1,6 +1,6 @@
 package com.qianzhimu.mgt.config;
 
-import com.qianzhimu.mgt.utils.SecurityUtils;
+import com.qianzhimu.api.utils.SecurityUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import java.util.Arrays;

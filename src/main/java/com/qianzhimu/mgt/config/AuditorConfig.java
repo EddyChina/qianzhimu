@@ -1,6 +1,6 @@
 package com.qianzhimu.mgt.config;
 
-import com.qianzhimu.mgt.utils.SecurityUtils;
+import com.qianzhimu.api.utils.SecurityUtils;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 

@@ -5,7 +5,7 @@ import com.qianzhimu.mgt.query.DeployQueryCriteria;
 import com.qianzhimu.mgt.entity.Deploy;
 import com.qianzhimu.mgt.entity.DeployHistory;
 import com.qianzhimu.mgt.service.DeployService;
-import com.qianzhimu.mgt.utils.FileUtil;
+import com.qianzhimu.api.utils.FileUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

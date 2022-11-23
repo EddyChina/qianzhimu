@@ -8,7 +8,7 @@ import cn.hutool.extra.template.TemplateEngine;
 import cn.hutool.extra.template.TemplateUtil;
 import com.qianzhimu.mgt.exception.BadRequestException;
 import com.qianzhimu.mgt.service.VerifyService;
-import com.qianzhimu.mgt.utils.RedisUtils;
+import com.qianzhimu.api.utils.RedisUtils;
 import com.qianzhimu.mgt.vo.EmailVo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

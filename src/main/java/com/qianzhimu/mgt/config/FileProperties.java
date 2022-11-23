@@ -1,6 +1,6 @@
 package com.qianzhimu.mgt.config;
 
-import com.qianzhimu.mgt.utils.DoKitConstant;
+import com.qianzhimu.api.utils.DoKitConstant;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;

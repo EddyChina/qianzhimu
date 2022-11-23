@@ -1,7 +1,7 @@
 package com.qianzhimu;
 
 import com.qianzhimu.mgt.annotation.rest.AnonymousGetMapping;
-import com.qianzhimu.mgt.utils.SpringContextHolder;
+import com.qianzhimu.api.utils.SpringContextHolder;
 import io.swagger.annotations.Api;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

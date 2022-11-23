@@ -1,7 +1,6 @@
 package com.qianzhimu.ows.entity;
 
-import com.qianzhimu.mgt.base.BaseEntity;
-import com.qianzhimu.mgt.utils.StringUtils;
+import com.qianzhimu.api.utils.StringUtils;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;

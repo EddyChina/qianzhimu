@@ -2,10 +2,10 @@ package com.qianzhimu.mgt.aspect;
 
 import com.qianzhimu.mgt.entity.Log;
 import com.qianzhimu.mgt.service.LogService;
-import com.qianzhimu.mgt.utils.RequestHolder;
-import com.qianzhimu.mgt.utils.SecurityUtils;
-import com.qianzhimu.mgt.utils.StringUtils;
-import com.qianzhimu.mgt.utils.ThrowableUtil;
+import com.qianzhimu.api.utils.RequestHolder;
+import com.qianzhimu.api.utils.SecurityUtils;
+import com.qianzhimu.api.utils.StringUtils;
+import com.qianzhimu.api.utils.ThrowableUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;

@@ -2,7 +2,7 @@ package com.qianzhimu.mgt.config;
 
 import com.qianzhimu.mgt.entity.QuartzJob;
 import com.qianzhimu.mgt.repository.QuartzJobRepository;
-import com.qianzhimu.mgt.utils.QuartzManage;
+import com.qianzhimu.api.utils.QuartzManage;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

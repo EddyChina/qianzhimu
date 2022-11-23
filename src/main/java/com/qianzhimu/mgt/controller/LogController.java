@@ -3,7 +3,7 @@ package com.qianzhimu.mgt.controller;
 import com.qianzhimu.mgt.annotation.Log;
 import com.qianzhimu.mgt.query.LogQueryCriteria;
 import com.qianzhimu.mgt.service.LogService;
-import com.qianzhimu.mgt.utils.SecurityUtils;
+import com.qianzhimu.api.utils.SecurityUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

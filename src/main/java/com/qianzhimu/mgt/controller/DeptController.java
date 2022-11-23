@@ -7,7 +7,7 @@ import com.qianzhimu.mgt.query.DeptQueryCriteria;
 import com.qianzhimu.mgt.entity.Dept;
 import com.qianzhimu.mgt.exception.BadRequestException;
 import com.qianzhimu.mgt.service.DeptService;
-import com.qianzhimu.mgt.utils.PageUtil;
+import com.qianzhimu.api.utils.PageUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

@@ -123,7 +123,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/file/**").permitAll()
                 // druid
                 .antMatchers("/druid/**").permitAll()
-                // 官网不需要登陆
+                // 官网不需要用户后台的登陆
                 .antMatchers("/ows/**").permitAll()
 
 

@@ -1,7 +1,7 @@
 package com.qianzhimu.mgt.config.xss;
 
-import com.qianzhimu.mgt.utils.EscapeUtil;
-import com.qianzhimu.mgt.utils.StringUtils;
+import com.qianzhimu.api.utils.EscapeUtil;
+import com.qianzhimu.api.utils.StringUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;

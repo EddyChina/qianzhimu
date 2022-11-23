@@ -5,7 +5,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.qianzhimu.mgt.config.bean.SecurityProperties;
-import com.qianzhimu.mgt.utils.RedisUtils;
+import com.qianzhimu.api.utils.RedisUtils;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

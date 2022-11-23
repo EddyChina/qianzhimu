@@ -3,8 +3,9 @@ package com.qianzhimu.ows.service.impl;
 import com.qianzhimu.api.entity.TradeMarker;
 import com.qianzhimu.api.mapper.TradeMarkerMapper;
 import com.qianzhimu.api.repository.TradeMarkerRepository;
-import com.qianzhimu.mgt.utils.PageUtil;
-import com.qianzhimu.mgt.utils.QueryHelp;
+import com.qianzhimu.api.utils.PageUtil;
+import com.qianzhimu.api.utils.QueryHelp;
+import com.qianzhimu.ows.dto.TradeMarkerDTO;
 import com.qianzhimu.ows.query.TradeMarkerQueryCriteria;
 import com.qianzhimu.ows.service.TradeMarkerService;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +26,10 @@ public class TradeMarkerServiceImpl implements TradeMarkerService {
         Page<TradeMarker> all = this.tradeMarkerRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root, criteria, criteriaBuilder), pageable);
 
         return PageUtil.toPage(all.map(tradeMarkerMapper::toDto));
+    }
+
+    @Override
+    public TradeMarkerDTO getByRegId(String regId) {
+        return tradeMarkerMapper.toDto(this.tradeMarkerRepository.getByRegId(regId));
     }
 }

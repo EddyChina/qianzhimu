@@ -1,6 +1,6 @@
 package com.qianzhimu.mgt.exception;
 
-import com.qianzhimu.mgt.utils.StringUtils;
+import com.qianzhimu.api.utils.StringUtils;
 
 
 public class EntityExistException extends RuntimeException {

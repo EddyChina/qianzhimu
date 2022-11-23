@@ -1,7 +1,7 @@
 package com.qianzhimu.mgt.security.service;
 
 import com.qianzhimu.mgt.service.impl.UserDetailsServiceImpl;
-import com.qianzhimu.mgt.utils.StringUtils;
+import com.qianzhimu.api.utils.StringUtils;
 import org.springframework.stereotype.Component;
 
 /**

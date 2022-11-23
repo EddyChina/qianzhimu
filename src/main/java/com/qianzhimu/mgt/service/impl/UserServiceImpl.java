@@ -1,5 +1,6 @@
 package com.qianzhimu.mgt.service.impl;
 
+import com.qianzhimu.api.utils.*;
 import com.qianzhimu.mgt.config.FileProperties;
 import com.qianzhimu.mgt.dto.JobSmallDto;
 import com.qianzhimu.mgt.dto.RoleSmallDto;
@@ -12,7 +13,6 @@ import com.qianzhimu.mgt.query.UserQueryCriteria;
 import com.qianzhimu.mgt.repository.UserRepository;
 import com.qianzhimu.mgt.security.service.UserCacheClean;
 import com.qianzhimu.mgt.service.UserService;
-import com.qianzhimu.mgt.utils.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;

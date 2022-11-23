@@ -1,13 +1,13 @@
 package com.qianzhimu.mgt.service.impl;
 
 import cn.hutool.core.util.IdUtil;
+import com.qianzhimu.api.utils.*;
 import com.qianzhimu.mgt.dto.DatabaseDto;
 import com.qianzhimu.mgt.entity.Database;
 import com.qianzhimu.mgt.mapstruct.DatabaseMapper;
 import com.qianzhimu.mgt.query.DatabaseQueryCriteria;
 import com.qianzhimu.mgt.repository.DatabaseRepository;
 import com.qianzhimu.mgt.service.DatabaseService;
-import com.qianzhimu.mgt.utils.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

@@ -1,5 +1,6 @@
 package com.qianzhimu.mgt.service.impl;
 
+import com.qianzhimu.api.utils.*;
 import com.qianzhimu.mgt.dto.JobDTO;
 import com.qianzhimu.mgt.entity.Job;
 import com.qianzhimu.mgt.exception.BadRequestException;
@@ -9,7 +10,6 @@ import com.qianzhimu.mgt.query.JobQueryCriteria;
 import com.qianzhimu.mgt.repository.JobRepository;
 import com.qianzhimu.mgt.repository.UserRepository;
 import com.qianzhimu.mgt.service.JobService;
-import com.qianzhimu.mgt.utils.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;

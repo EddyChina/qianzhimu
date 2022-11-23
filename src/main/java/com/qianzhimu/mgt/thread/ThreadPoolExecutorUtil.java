@@ -1,6 +1,6 @@
 package com.qianzhimu.mgt.thread;
 
-import com.qianzhimu.mgt.utils.SpringContextHolder;
+import com.qianzhimu.api.utils.SpringContextHolder;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;

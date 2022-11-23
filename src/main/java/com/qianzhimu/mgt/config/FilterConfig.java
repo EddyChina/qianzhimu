@@ -1,7 +1,7 @@
 package com.qianzhimu.mgt.config;
 
 import com.qianzhimu.mgt.config.xss.XssFilter;
-import com.qianzhimu.mgt.utils.StringUtils;
+import com.qianzhimu.api.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

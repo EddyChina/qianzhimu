@@ -2,9 +2,10 @@ package com.qianzhimu.mgt.aspect;
 
 import com.google.common.collect.ImmutableList;
 import com.qianzhimu.mgt.annotation.Limit;
-import com.qianzhimu.mgt.exception.BadRequestException;
-import com.qianzhimu.mgt.utils.RequestHolder;
-import com.qianzhimu.mgt.utils.StringUtils;
+import com.qianzhimu.mgt.base.Response;
+import com.qianzhimu.mgt.exception.OverRateLimitException;
+import com.qianzhimu.api.utils.RequestHolder;
+import com.qianzhimu.api.utils.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -61,7 +62,7 @@ public class LimitAspect {
             logger.info("第{}次访问key为 {}，描述为 [{}] 的接口", count, keys, limit.name());
             return joinPoint.proceed();
         } else {
-            throw new BadRequestException("访问次数受限制");
+            throw new OverRateLimitException(Response.RespCode.REQUEST_TOO_MUCH);
         }
     }
 
