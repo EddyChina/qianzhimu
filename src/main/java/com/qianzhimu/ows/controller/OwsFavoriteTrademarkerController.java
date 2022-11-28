@@ -28,7 +28,7 @@ public class OwsFavoriteTrademarkerController extends BaseOwsController {
     @Log("查询OwsFavoriteTmService")
     @ApiOperation("查询OwsFavoriteTmService")
     @GetMapping()
-    @Limit(name = "注册接口限流保护", period = 3, count = 1, key = "ows:register", prefix = "limit", limitType = LimitType.IP)
+    @Limit(name = "查询个人收藏", period = 3, count = 1, key = "ows:register", prefix = "limit", limitType = LimitType.IP)
     public Response query(OwsFavoriteTrademarkerQueryCriteria criteria, Pageable pageable, HttpServletRequest request){
         // 获取当前登陆用户id
         Long accountId = super.getLoginAccountId(request);
@@ -39,7 +39,7 @@ public class OwsFavoriteTrademarkerController extends BaseOwsController {
     @Log("新增OwsFavoriteTmService")
     @ApiOperation("新增OwsFavoriteTmService")
     @PostMapping
-    @Limit(name = "注册接口限流保护", period = 1, count = 1, key = "ows:register", prefix = "limit", limitType = LimitType.IP)
+    @Limit(name = "收藏商标", period = 1, count = 1, key = "ows:register", prefix = "limit", limitType = LimitType.IP)
     public Response create(@Validated @RequestBody OwsFavoriteTrademarker resources, HttpServletRequest request){
         // 获取当前登陆用户id
         Long accountId = super.getLoginAccountId(request);
@@ -51,7 +51,7 @@ public class OwsFavoriteTrademarkerController extends BaseOwsController {
     @Log("删除OwsFavoriteTmService")
     @ApiOperation("删除OwsFavoriteTmService")
     @DeleteMapping
-    @Limit(name = "注册接口限流保护", period = 1, count = 3, key = "ows:register", prefix = "limit", limitType = LimitType.IP)
+    @Limit(name = "删除收藏的商标", period = 1, count = 3, key = "ows:register", prefix = "limit", limitType = LimitType.IP)
     public Response delete(@RequestBody Long[] ids, HttpServletRequest request) {
         owsFavoriteTrademarkerService.deleteAll(ids);
         return Response.SUCCESS();

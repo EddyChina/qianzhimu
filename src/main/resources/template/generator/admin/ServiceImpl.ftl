@@ -10,8 +10,8 @@ import exception.com.qianzhimu.mgt.EntityExistException;
         </#if>
     </#list>
 </#if>
-import utils.com.qianzhimu.mgt.ValidationUtil;
-import utils.com.qianzhimu.mgt.FileUtil;
+import com.qianzhimu.mgt.ValidationUtil;
+import com.qianzhimu.mgt.FileUtil;
 import lombok.RequiredArgsConstructor;
 import ${package}.repository.${className}Repository;
 import ${package}.service.${className}Service;
@@ -29,8 +29,8 @@ import cn.hutool.core.util.IdUtil;
 </#if>
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import utils.com.qianzhimu.mgt.PageUtil;
-import utils.com.qianzhimu.mgt.QueryHelp;
+import com.qianzhimu.mgt.PageUtil;
+import com.qianzhimu.mgt.QueryHelp;
 import java.util.List;
 import java.util.Map;
 import java.io.IOException;

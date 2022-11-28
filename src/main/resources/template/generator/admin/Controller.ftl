@@ -1,9 +1,10 @@
 package ${package}.controller;
 
-import annotation.com.qianzhimu.mgt.Log;
+import com.qianzhimu.mgt.annotation.Log;
 import ${package}.entity.${className};
 import ${package}.service.${className}Service;
 import ${package}.query.${className}QueryCriteria;
+import com.qianzhimu.mgt.base.Response;
 import org.springframework.data.domain.Pageable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -37,34 +38,34 @@ public class ${className}Controller {
     @ApiOperation("查询${apiAlias}")
     @GetMapping()
     @PreAuthorize("@dokit.check('${changeClassName}:list')")
-    public ResponseEntity<Object> query(${className}QueryCriteria criteria, Pageable pageable){
-        return new ResponseEntity<>(${changeClassName}Service.queryAll(criteria,pageable),HttpStatus.OK);
+    public Response<Object> query(${className}QueryCriteria criteria, Pageable pageable){
+        return Response.SUCCESS(${changeClassName}Service.queryAll(criteria,pageable));
     }
 
     @Log("新增${apiAlias}")
     @ApiOperation("新增${apiAlias}")
     @PostMapping
     @PreAuthorize("@dokit.check('${changeClassName}:add')")
-    public ResponseEntity<Object> create(@Validated @RequestBody ${className} resources){
-        return new ResponseEntity<>(${changeClassName}Service.create(resources),HttpStatus.CREATED);
+    public Response<Object> create(@Validated @RequestBody ${className} resources){
+        return Response.SUCCESS(${changeClassName}Service.create(resources));
     }
 
     @Log("修改${apiAlias}")
     @ApiOperation("修改${apiAlias}")
     @PutMapping
     @PreAuthorize("@dokit.check('${changeClassName}:edit')")
-    public ResponseEntity<Object> update(@Validated @RequestBody ${className} resources){
-    ${changeClassName}Service.update(resources);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public Response<Object> update(@Validated @RequestBody ${className} resources){
+        ${changeClassName}Service.update(resources);
+        return Response.SUCCESS();
     }
 
     @Log("删除${apiAlias}")
     @ApiOperation("删除${apiAlias}")
     @PreAuthorize("@dokit.check('${changeClassName}:del')")
     @DeleteMapping
-    public ResponseEntity<Object> delete(@RequestBody ${pkColumnType}[] ids) {
-    ${changeClassName}Service.deleteAll(ids);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public Response<Object> delete(@RequestBody ${pkColumnType}[] ids) {
+        ${changeClassName}Service.deleteAll(ids);
+        return Response.SUCCESS();
     }
 
 }
