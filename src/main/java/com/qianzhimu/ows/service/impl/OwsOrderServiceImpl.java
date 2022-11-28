@@ -4,12 +4,15 @@ import com.qianzhimu.api.utils.FileUtil;
 import com.qianzhimu.api.utils.PageUtil;
 import com.qianzhimu.api.utils.QueryHelp;
 import com.qianzhimu.api.utils.ValidationUtil;
+import com.qianzhimu.mgt.base.Response;
+import com.qianzhimu.mgt.exception.CommonBizException;
 import com.qianzhimu.ows.dto.OwsOrderDto;
 import com.qianzhimu.ows.entity.OwsOrder;
 import com.qianzhimu.ows.mapstruct.OwsOrderMapper;
 import com.qianzhimu.ows.query.OwsOrderQueryCriteria;
 import com.qianzhimu.ows.repository.OwsOrderRepository;
 import com.qianzhimu.ows.service.OwsOrderService;
+import com.qianzhimu.ows.service.TradeMarkerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,6 +33,8 @@ public class OwsOrderServiceImpl implements OwsOrderService {
     private final OwsOrderRepository owsOrderRepository;
 
     private final OwsOrderMapper owsOrderMapper;
+
+    private final TradeMarkerService tradeMarkerService;
 
     @Override
     public Map<String,Object> queryAll(OwsOrderQueryCriteria criteria, Pageable pageable){
@@ -53,6 +58,11 @@ public class OwsOrderServiceImpl implements OwsOrderService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public OwsOrderDto create(OwsOrder resources) {
+        // 查询指定的商标是否存在
+        if (this.tradeMarkerService.getByRegId(resources.getTmRegId()) == null) {
+            throw new CommonBizException(Response.RespCode.RESOURCE_404, "下单商标不存在");
+        }
+        resources.setState(0); // 未支付
         return owsOrderMapper.toDto(owsOrderRepository.save(resources));
     }
 
@@ -77,10 +87,10 @@ public class OwsOrderServiceImpl implements OwsOrderService {
         List<Map<String, Object>> list = new ArrayList<>();
         for (OwsOrderDto owsOrder : all) {
             Map<String,Object> map = new LinkedHashMap<>();
-            map.put("账号ID", owsOrder.getAccountId());
+//            map.put("账号ID", owsOrder.getAccountId());
             map.put("商标注册号", owsOrder.getTmRegId());
             map.put("商标标价", owsOrder.getTmPrice());
-            map.put("服务费", owsOrder.getTmCommission());
+//            map.put("服务费", owsOrder.getTmCommission());
             map.put("订单金额", owsOrder.getOrderAmount());
             map.put("支付方式", owsOrder.getPayment());
             map.put("订单状态", owsOrder.getState());

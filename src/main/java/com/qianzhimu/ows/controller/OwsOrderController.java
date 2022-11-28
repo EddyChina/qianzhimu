@@ -1,6 +1,8 @@
 package com.qianzhimu.ows.controller;
 
 import com.qianzhimu.mgt.annotation.Log;
+import com.qianzhimu.mgt.base.BaseOwsController;
+import com.qianzhimu.mgt.base.Response;
 import com.qianzhimu.ows.entity.OwsOrder;
 import com.qianzhimu.ows.query.OwsOrderQueryCriteria;
 import com.qianzhimu.ows.service.OwsOrderService;
@@ -8,11 +10,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -21,7 +22,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 @Api(tags = "OwsOrderService管理")
 @RequestMapping("/ows/order")
-public class OwsOrderController {
+public class OwsOrderController extends BaseOwsController {
 
     private final OwsOrderService owsOrderService;
 
@@ -35,31 +36,35 @@ public class OwsOrderController {
     @Log("查询OwsOrderService")
     @ApiOperation("查询OwsOrderService")
     @GetMapping()
-    public ResponseEntity<Object> query(OwsOrderQueryCriteria criteria, Pageable pageable){
-        return new ResponseEntity<>(owsOrderService.queryAll(criteria,pageable),HttpStatus.OK);
+    public Response query(OwsOrderQueryCriteria criteria, Pageable pageable, HttpServletRequest request){
+        Long loginAccountId = super.getLoginAccountId(request);
+        criteria.setAccountId(loginAccountId);
+        return Response.SUCCESS(owsOrderService.queryAll(criteria,pageable));
     }
 
     @Log("新增OwsOrderService")
     @ApiOperation("新增OwsOrderService")
     @PostMapping
-    public ResponseEntity<Object> create(@Validated @RequestBody OwsOrder resources){
-        return new ResponseEntity<>(owsOrderService.create(resources),HttpStatus.CREATED);
+    public Response create(@Validated @RequestBody OwsOrder resources, HttpServletRequest request){
+        Long loginAccountId = super.getLoginAccountId(request);
+        resources.setAccountId(loginAccountId);
+        return Response.SUCCESS(owsOrderService.create(resources));
     }
 
     @Log("修改OwsOrderService")
     @ApiOperation("修改OwsOrderService")
     @PutMapping
-    public ResponseEntity<Object> update(@Validated @RequestBody OwsOrder resources){
-    owsOrderService.update(resources);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public Response update(@Validated @RequestBody OwsOrder resources){
+        owsOrderService.update(resources);
+        return Response.SUCCESS();
     }
 
     @Log("删除OwsOrderService")
     @ApiOperation("删除OwsOrderService")
     @DeleteMapping
-    public ResponseEntity<Object> delete(@RequestBody Long[] ids) {
-    owsOrderService.deleteAll(ids);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public Response delete(@RequestBody Long[] ids) {
+        owsOrderService.deleteAll(ids);
+        return Response.SUCCESS();
     }
 
 }

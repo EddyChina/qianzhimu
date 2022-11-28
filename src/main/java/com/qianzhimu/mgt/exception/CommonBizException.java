@@ -15,4 +15,9 @@ public class CommonBizException extends RuntimeException{
     public CommonBizException(Response.RespCode respCode) {
         this.response = Response.FAIL(respCode);
     }
+
+    public CommonBizException(Response.RespCode respCode, String message) {
+        this.response = Response.FAIL(respCode);
+        response.setMessage(message);
+    }
 }

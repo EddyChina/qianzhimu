@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -28,7 +29,6 @@ public class OwsOrder implements Serializable {
     private Long id;
 
     @Column(name = "account_id", nullable = false)
-    @NotNull
     @ApiModelProperty(value = "账号ID")
     private Long accountId;
 
@@ -43,7 +43,6 @@ public class OwsOrder implements Serializable {
     private Double tmPrice;
 
     @Column(name = "tm_commission", nullable = false)
-    @NotNull
     @ApiModelProperty(value = "服务费")
     private Double tmCommission;
 
@@ -53,23 +52,19 @@ public class OwsOrder implements Serializable {
     private Double orderAmount;
 
     @Column(name = "payment", nullable = false)
-    @NotNull
     @ApiModelProperty(value = "支付方式")
     private Integer payment;
 
     @Column(name = "state", nullable = false)
-    @NotNull
     @ApiModelProperty(value = "订单状态")
     private Integer state;
 
     @Column(name = "create_time", nullable = false)
-    @NotNull
-    @UpdateTimestamp
+    @CreationTimestamp
     @ApiModelProperty(value = "订单创建时间")
     private Timestamp createTime;
 
     @Column(name = "update_time", nullable = false)
-    @NotNull
     @UpdateTimestamp
     @ApiModelProperty(value = "订单修改时间")
     private Timestamp updateTime;
