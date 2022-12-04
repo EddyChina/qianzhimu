@@ -8,12 +8,12 @@
         <version>2.1.9.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.perye</groupId>
-    <artifactId>dokit</artifactId>
+    <groupId>com.qianzhimu</groupId>
+    <artifactId>qianzhimu</artifactId>
     <version>1.0</version>
-    <name>dokit</name>
+    <name>website</name>
     <packaging>jar</packaging>
-    <description>dokit</description>
+    <description>qianzhimu website</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
