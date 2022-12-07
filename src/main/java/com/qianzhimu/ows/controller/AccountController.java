@@ -1,5 +1,6 @@
 package com.qianzhimu.ows.controller;
 
+import com.qianzhimu.api.utils.SecurityUtils;
 import com.qianzhimu.mgt.annotation.Limit;
 import com.qianzhimu.mgt.annotation.Log;
 import com.qianzhimu.mgt.aspect.LimitType;
@@ -60,6 +61,7 @@ public class AccountController extends BaseOwsController {
                 // 返回 token 与 用户信息
                 Map<String,Object> authInfo = new HashMap<String,Object>(2){{
                     put("token", token);
+                    put("mobile", SecurityUtils.coverPhone(account.getPhone()));
                 }};
 
                 return Response.SUCCESS(authInfo);
@@ -96,8 +98,7 @@ public class AccountController extends BaseOwsController {
     }
 
     private String md5Pwd(String origin) {
-        String md5Pwd = Md5.md5((origin+RsaProperties.md5Key).getBytes());
-        return md5Pwd;
+        return Md5.md5((origin+RsaProperties.md5Key).getBytes());
     }
 
     @ApiOperation("修改密码")

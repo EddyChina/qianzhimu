@@ -71,6 +71,11 @@ public class SecurityUtils {
         return JSONUtil.toList(array,Long.class);
     }
 
-
-
+    public static String coverPhone(String phone) {
+        String res = phone.substring(0, 3) + "****";
+        if (StringUtils.trimToEmpty(phone).length() >= 7) {
+            res += phone.substring(7);
+        }
+        return res;
+    }
 }

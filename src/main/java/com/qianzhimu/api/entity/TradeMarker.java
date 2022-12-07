@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -38,11 +39,11 @@ public class TradeMarker extends BaseEntity implements Serializable {
     @NotBlank
     private String contentType;
 
-    @NotBlank
+    @NotNull
     @JsonIgnore
     private Date regDate;
 
-    @NotBlank
+    @NotNull
     @JsonIgnore
     private Date validDate;
 
