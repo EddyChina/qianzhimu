@@ -57,7 +57,7 @@ public class UserController {
     @Log("导出用户数据")
     @ApiOperation("导出用户数据")
     @GetMapping(value = "/download")
-    @PreAuthorize("@dokit.check('user:list')")
+    @PreAuthorize("@preAuthcheck('user:list')")
     public void download(HttpServletResponse response, UserQueryCriteria criteria) throws IOException {
         userService.download(userService.queryAll(criteria), response);
     }
@@ -65,7 +65,7 @@ public class UserController {
     @Log("查询用户")
     @ApiOperation("查询用户")
     @GetMapping
-    @PreAuthorize("@dokit.check('user:list')")
+    @PreAuthorize("@preAuthcheck('user:list')")
     public ResponseEntity<Object> query(UserQueryCriteria criteria, Pageable pageable) {
         if (!ObjectUtils.isEmpty(criteria.getDeptId())) {
             criteria.getDeptIds().add(criteria.getDeptId());
@@ -94,7 +94,7 @@ public class UserController {
     @Log("新增用户")
     @ApiOperation("新增用户")
     @PostMapping
-    @PreAuthorize("@dokit.check('user:add')")
+    @PreAuthorize("@preAuthcheck('user:add')")
     public ResponseEntity<Object> create(@Validated @RequestBody User resources) {
         checkLevel(resources);
         // 默认密码 123456
@@ -106,7 +106,7 @@ public class UserController {
     @Log("修改用户")
     @ApiOperation("修改用户")
     @PutMapping
-    @PreAuthorize("@dokit.check('user:edit')")
+    @PreAuthorize("@preAuthcheck('user:edit')")
     public ResponseEntity<Object> update(@Validated(User.Update.class) @RequestBody User resources) {
         checkLevel(resources);
         userService.update(resources);
@@ -127,7 +127,7 @@ public class UserController {
     @Log("删除用户")
     @ApiOperation("删除用户")
     @DeleteMapping
-    @PreAuthorize("@dokit.check('user:del')")
+    @PreAuthorize("@preAuthcheck('user:del')")
     public ResponseEntity<Object> delete(@RequestBody Set<Long> ids) {
         for (Long id : ids) {
             Integer currentLevel = Collections.min(roleService.findByUsersId(SecurityUtils.getCurrentUserId()).stream().map(RoleSmallDto::getLevel).collect(Collectors.toList()));

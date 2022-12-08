@@ -27,7 +27,7 @@ public class PictureController {
     private final PictureService pictureService;
 
     @Log("查询图片")
-    @PreAuthorize("@dokit.check('pictures:list')")
+    @PreAuthorize("@preAuthcheck('pictures:list')")
     @GetMapping()
     @ApiOperation("查询图片")
     public ResponseEntity<Object> query(PictureQueryCriteria criteria, Pageable pageable){
@@ -37,13 +37,13 @@ public class PictureController {
     @Log("导出数据")
     @ApiOperation("导出数据")
     @GetMapping(value = "/download")
-    @PreAuthorize("@dokit.check('pictures:list')")
+    @PreAuthorize("@preAuthcheck('pictures:list')")
     public void download(HttpServletResponse response, PictureQueryCriteria criteria) throws IOException {
         pictureService.download(pictureService.queryAll(criteria), response);
     }
 
     @Log("上传图片")
-    @PreAuthorize("@dokit.check('pictures:add')")
+    @PreAuthorize("@preAuthcheck('pictures:add')")
     @PostMapping
     @ApiOperation("上传图片")
     public ResponseEntity<Object> upload(@RequestParam MultipartFile file){
@@ -62,7 +62,7 @@ public class PictureController {
 
     @Log("多选删除图片")
     @ApiOperation("多选删除图片")
-    @PreAuthorize("@dokit.check('pictures:del')")
+    @PreAuthorize("@preAuthcheck('pictures:del')")
     @DeleteMapping
     public ResponseEntity<Object> delete(@RequestBody Long[] ids) {
         pictureService.deleteAll(ids);

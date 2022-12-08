@@ -21,7 +21,7 @@ public class MonitorController {
 
     @GetMapping
     @ApiOperation("查询服务监控")
-    @PreAuthorize("@dokit.check('monitor:list')")
+    @PreAuthorize("@preAuthcheck('monitor:list')")
     public ResponseEntity<Object> query(){
         return new ResponseEntity<>(serverService.getServers(), HttpStatus.OK);
     }

@@ -32,7 +32,7 @@ public class JobController {
     @Log("导出岗位数据")
     @ApiOperation("导出岗位数据")
     @GetMapping(value = "/download")
-    @PreAuthorize("@dokit.check('job:list')")
+    @PreAuthorize("@preAuthcheck('job:list')")
     public void download(HttpServletResponse response, JobQueryCriteria criteria) throws IOException {
         jobService.download(jobService.queryAll(criteria), response);
     }
@@ -40,7 +40,7 @@ public class JobController {
     @Log("查询岗位")
     @ApiOperation("查询岗位")
     @GetMapping
-    @PreAuthorize("@dokit.check('job:list','user:list')")
+    @PreAuthorize("@preAuthcheck('job:list','user:list')")
     public ResponseEntity<Object> query(JobQueryCriteria criteria, Pageable pageable){
         return new ResponseEntity<>(jobService.queryAll(criteria, pageable),HttpStatus.OK);
     }
@@ -48,7 +48,7 @@ public class JobController {
     @Log("新增岗位")
     @ApiOperation("新增岗位")
     @PostMapping
-    @PreAuthorize("@dokit.check('job:add')")
+    @PreAuthorize("@preAuthcheck('job:add')")
     public ResponseEntity<Object> create(@Validated @RequestBody Job resources){
         if (resources.getId() != null) {
             throw new BadRequestException("A new "+ ENTITY_NAME +" cannot already have an ID");
@@ -60,7 +60,7 @@ public class JobController {
     @Log("修改岗位")
     @ApiOperation("修改岗位")
     @PutMapping
-    @PreAuthorize("@dokit.check('job:edit')")
+    @PreAuthorize("@preAuthcheck('job:edit')")
     public ResponseEntity<Object> update(@Validated(Job.Update.class) @RequestBody Job resources){
         jobService.update(resources);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -69,7 +69,7 @@ public class JobController {
     @Log("删除岗位")
     @ApiOperation("删除岗位")
     @DeleteMapping
-    @PreAuthorize("@dokit.check('job:del')")
+    @PreAuthorize("@preAuthcheck('job:del')")
     public ResponseEntity<Object> delete(@RequestBody Set<Long> ids){
         // 验证是否被用户关联
         jobService.verification(ids);

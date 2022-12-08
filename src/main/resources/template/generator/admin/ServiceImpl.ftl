@@ -5,13 +5,13 @@ import ${package}.entity.${className};
     <#list columns as column>
         <#if column.columnKey = 'UNI'>
             <#if column_index = 1>
-import exception.com.qianzhimu.mgt.EntityExistException;
+import com.qianzhimu.mgt.exception.EntityExistException;
             </#if>
         </#if>
     </#list>
 </#if>
-import com.qianzhimu.mgt.ValidationUtil;
-import com.qianzhimu.mgt.FileUtil;
+import com.qianzhimu.api.utils.ValidationUtil;
+import com.qianzhimu.api.utils.FileUtil;
 import lombok.RequiredArgsConstructor;
 import ${package}.repository.${className}Repository;
 import ${package}.service.${className}Service;
@@ -29,8 +29,8 @@ import cn.hutool.core.util.IdUtil;
 </#if>
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import com.qianzhimu.mgt.PageUtil;
-import com.qianzhimu.mgt.QueryHelp;
+import com.qianzhimu.api.utils.PageUtil;
+import com.qianzhimu.api.utils.QueryHelp;
 import java.util.List;
 import java.util.Map;
 import java.io.IOException;

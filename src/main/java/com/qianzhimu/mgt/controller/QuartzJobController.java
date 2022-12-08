@@ -35,7 +35,7 @@ public class QuartzJobController {
     @Log("查询定时任务")
     @ApiOperation("查询定时任务")
     @GetMapping
-    @PreAuthorize("@dokit.check('timing:list')")
+    @PreAuthorize("@preAuthcheck('timing:list')")
     public ResponseEntity<Object> query(QuartzJobQueryCriteria criteria, Pageable pageable){
         return new ResponseEntity<>(quartzJobService.queryAll(criteria,pageable), HttpStatus.OK);
     }
@@ -43,7 +43,7 @@ public class QuartzJobController {
     @Log("导出任务数据")
     @ApiOperation("导出任务数据")
     @GetMapping(value = "/download")
-    @PreAuthorize("@dokit.check('timing:list')")
+    @PreAuthorize("@preAuthcheck('timing:list')")
     public void download(HttpServletResponse response, JobQueryCriteria criteria) throws IOException {
         quartzJobService.download(quartzJobService.queryAll(criteria), response);
     }
@@ -51,14 +51,14 @@ public class QuartzJobController {
     @Log("导出日志数据")
     @ApiOperation("导出日志数据")
     @GetMapping(value = "/logs/download")
-    @PreAuthorize("@dokit.check('timing:list')")
+    @PreAuthorize("@preAuthcheck('timing:list')")
     public void downloadLog(HttpServletResponse response, JobQueryCriteria criteria) throws IOException {
         quartzJobService.downloadLog(quartzJobService.queryAllLog(criteria), response);
     }
 
     @ApiOperation("查询任务执行日志")
     @GetMapping(value = "/logs")
-    @PreAuthorize("@dokit.check('timing:list')")
+    @PreAuthorize("@preAuthcheck('timing:list')")
     public ResponseEntity<Object> queryJobLog(QuartzJobQueryCriteria criteria, Pageable pageable){
         return new ResponseEntity<>(quartzJobService.queryAllLog(criteria,pageable), HttpStatus.OK);
     }
@@ -66,7 +66,7 @@ public class QuartzJobController {
     @Log("新增定时任务")
     @ApiOperation("新增定时任务")
     @PostMapping
-    @PreAuthorize("@dokit.check('timing:add')")
+    @PreAuthorize("@preAuthcheck('timing:add')")
     public ResponseEntity<Object> create(@Validated @RequestBody QuartzJob resources){
         if (resources.getId() != null) {
             throw new BadRequestException("A new "+ ENTITY_NAME +" cannot already have an ID");
@@ -78,7 +78,7 @@ public class QuartzJobController {
     @Log("修改定时任务")
     @ApiOperation("修改定时任务")
     @PutMapping
-    @PreAuthorize("@dokit.check('timing:edit')")
+    @PreAuthorize("@preAuthcheck('timing:edit')")
     public ResponseEntity<Object> update(@Validated(QuartzJob.Update.class) @RequestBody QuartzJob resources){
         quartzJobService.update(resources);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -87,7 +87,7 @@ public class QuartzJobController {
     @Log("更改定时任务状态")
     @ApiOperation("更改定时任务状态")
     @PutMapping(value = "/{id}")
-    @PreAuthorize("@dokit.check('timing:edit')")
+    @PreAuthorize("@preAuthcheck('timing:edit')")
     public ResponseEntity<Object> update(@PathVariable Long id){
         quartzJobService.updateIsPause(quartzJobService.findById(id));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -96,7 +96,7 @@ public class QuartzJobController {
     @Log("执行定时任务")
     @ApiOperation("执行定时任务")
     @PutMapping(value = "/exec/{id}")
-    @PreAuthorize("@dokit.check('timing:edit')")
+    @PreAuthorize("@preAuthcheck('timing:edit')")
     public ResponseEntity<Object> execution(@PathVariable Long id){
         quartzJobService.execution(quartzJobService.findById(id));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -105,7 +105,7 @@ public class QuartzJobController {
     @Log("删除定时任务")
     @ApiOperation("删除定时任务")
     @DeleteMapping
-    @PreAuthorize("@dokit.check('timing:del')")
+    @PreAuthorize("@preAuthcheck('timing:del')")
     public ResponseEntity<Object> delete(@RequestBody Set<Long> ids){
         quartzJobService.delete(ids);
         return new ResponseEntity<>(HttpStatus.OK);

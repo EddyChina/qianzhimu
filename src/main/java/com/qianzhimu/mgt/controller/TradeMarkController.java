@@ -4,10 +4,7 @@ import com.qianzhimu.api.utils.FileUtil;
 import com.qianzhimu.mgt.base.Response;
 import com.qianzhimu.mgt.service.TradeMarkService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -24,6 +21,12 @@ public class TradeMarkController {
         File tempFile = FileUtil.toFile(file);
 
         this.tradeMarkService.upload(tempFile);
+
+        return Response.SUCCESS();
+    }
+
+    @PostMapping("/{tmId}")
+    public Response updatePrice(@PathVariable String tmId) {
 
         return Response.SUCCESS();
     }

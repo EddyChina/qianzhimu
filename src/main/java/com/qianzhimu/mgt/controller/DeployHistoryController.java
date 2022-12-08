@@ -32,7 +32,7 @@ public class DeployHistoryController {
     @Log("导出部署历史数据")
     @ApiOperation("导出部署历史数据")
     @GetMapping(value = "/download")
-    @PreAuthorize("@dokit.check('deployHistory:list')")
+    @PreAuthorize("@preAuthcheck('deployHistory:list')")
     public void download(HttpServletResponse response, DeployHistoryQueryCriteria criteria) throws IOException {
         deployhistoryService.download(deployhistoryService.queryAll(criteria), response);
     }
@@ -40,7 +40,7 @@ public class DeployHistoryController {
     @Log("查询部署历史管理")
     @ApiOperation(value = "查询部署历史管理")
     @GetMapping
-    @PreAuthorize("@dokit.check('deployHistory:list')")
+    @PreAuthorize("@preAuthcheck('deployHistory:list')")
     public ResponseEntity<Object> query(DeployHistoryQueryCriteria criteria, Pageable pageable){
         return new ResponseEntity<>(deployhistoryService.queryAll(criteria,pageable),HttpStatus.OK);
     }
@@ -49,7 +49,7 @@ public class DeployHistoryController {
     @Log("删除部署历史管理")
     @ApiOperation(value = "删除部署历史管理")
     @DeleteMapping
-    @PreAuthorize("@dokit.check('deployHistory:del')")
+    @PreAuthorize("@preAuthcheck('deployHistory:del')")
     public ResponseEntity<Object> delete(@RequestBody Set<String> ids){
         deployhistoryService.delete(ids);
         return new ResponseEntity<>(HttpStatus.OK);

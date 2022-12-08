@@ -1,6 +1,6 @@
 package ${package}.mapstruct;
 
-import com.qianzhimu.mgt.BaseMapper;
+import com.qianzhimu.mgt.base.BaseMapper;
 import ${package}.entity.${className};
 import ${package}.dto.${className}Dto;
 import org.mapstruct.Mapper;
