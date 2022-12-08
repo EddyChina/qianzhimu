@@ -55,7 +55,7 @@ public class DictDetailController {
     @Log("新增字典详情")
     @ApiOperation("新增字典详情")
     @PostMapping
-    @PreAuthorize("@preAuthcheck('dict:add')")
+    @PreAuthorize("@preAuth.check('dict:add')")
     public ResponseEntity<Object> create(@Validated @RequestBody DictDetail resources){
         if (resources.getId() != null) {
             throw new BadRequestException("A new "+ ENTITY_NAME +" cannot already have an ID");
@@ -67,7 +67,7 @@ public class DictDetailController {
     @Log("修改字典详情")
     @ApiOperation("修改字典详情")
     @PutMapping
-    @PreAuthorize("@preAuthcheck('dict:edit')")
+    @PreAuthorize("@preAuth.check('dict:edit')")
     public ResponseEntity<Object> update(@Validated(DictDetail.Update.class) @RequestBody DictDetail resources){
         dictDetailService.update(resources);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -76,7 +76,7 @@ public class DictDetailController {
     @Log("删除字典详情")
     @ApiOperation("删除字典详情")
     @DeleteMapping(value = "/{id}")
-    @PreAuthorize("@preAuthcheck('dict:del')")
+    @PreAuthorize("@preAuth.check('dict:del')")
     public ResponseEntity<Object> delete(@PathVariable Long id){
         dictDetailService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);

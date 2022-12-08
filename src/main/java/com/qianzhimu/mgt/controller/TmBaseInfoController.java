@@ -27,14 +27,14 @@ public class TmBaseInfoController {
 
     @ApiOperation("导出数据")
     @GetMapping(value = "/download")
-    @PreAuthorize("@preAuthcheck('tmBaseInfo:list')")
+    @PreAuthorize("@preAuth.check('tmBaseInfo:list')")
     public void download(HttpServletResponse response, TmBaseInfoQueryCriteria criteria) throws IOException {
         tmBaseInfoService.download(tmBaseInfoService.queryAll(criteria), response);
     }
 
     @ApiOperation("查询TmBaseInfoService")
     @GetMapping()
-    @PreAuthorize("@preAuthcheck('tmBaseInfo:list')")
+    @PreAuthorize("@preAuth.check('tmBaseInfo:list')")
     public Response query(TmBaseInfoQueryCriteria criteria, Pageable pageable){
         return Response.SUCCESS(tmBaseInfoService.queryAll(criteria,pageable));
     }
@@ -42,7 +42,7 @@ public class TmBaseInfoController {
     @Log("新增TmBaseInfoService")
     @ApiOperation("新增TmBaseInfoService")
     @PostMapping
-    @PreAuthorize("@preAuthcheck('tmBaseInfo:add')")
+    @PreAuthorize("@preAuth.check('tmBaseInfo:add')")
     public Response create(@Validated @RequestBody TmBaseInfo resources){
         return Response.SUCCESS(tmBaseInfoService.create(resources));
     }
@@ -50,7 +50,7 @@ public class TmBaseInfoController {
     @Log("修改TmBaseInfoService")
     @ApiOperation("修改TmBaseInfoService")
     @PutMapping
-    @PreAuthorize("@preAuthcheck('tmBaseInfo:edit')")
+    @PreAuthorize("@preAuth.check('tmBaseInfo:edit')")
     public Response update(@Validated @RequestBody TmBaseInfo resources){
         tmBaseInfoService.update(resources);
         return Response.SUCCESS();
@@ -58,7 +58,7 @@ public class TmBaseInfoController {
 
     @Log("删除TmBaseInfoService")
     @ApiOperation("删除TmBaseInfoService")
-    @PreAuthorize("@preAuthcheck('tmBaseInfo:del')")
+    @PreAuthorize("@preAuth.check('tmBaseInfo:del')")
     @DeleteMapping
     public Response delete(@RequestBody Long[] ids) {
         tmBaseInfoService.deleteAll(ids);
