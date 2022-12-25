@@ -4,9 +4,9 @@ spring:
     druid:
       db-type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-      url: jdbc:log4jdbc:mysql://localhost:3306/dokit?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
-      username: root
-      password: 123456
+      url: jdbc:log4jdbc:mysql://localhost:3306/qianzhimu?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&zeroDateTimeBehavior=convertToNull
+      username: qianzhimu
+      password: qianzhimu
 
       # 初始化配置
       initial-size: 5
@@ -113,8 +113,8 @@ file:
     path: ~/dokit/file/
     avatar: ~/dokit/avatar/
   linux:
-    path: /home/dokit/file/
-    avatar: /home/dokit/avatar/
+    path: /home/qianzhimu/file/
+    avatar: /home/qianzhimu/avatar/
   windows:
     path: D:\dokit\file\
     avatar: D:\dokit\avatar\

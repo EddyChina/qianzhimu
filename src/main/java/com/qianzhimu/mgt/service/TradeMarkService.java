@@ -4,4 +4,5 @@ import java.io.File;
 
 public interface TradeMarkService {
     void upload(File file);
+
 }

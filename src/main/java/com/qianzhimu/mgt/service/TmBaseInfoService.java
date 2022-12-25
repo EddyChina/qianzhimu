@@ -1,13 +1,14 @@
 package com.qianzhimu.mgt.service;
 
-import com.qianzhimu.mgt.entity.TmBaseInfo;
 import com.qianzhimu.mgt.dto.TmBaseInfoDto;
+import com.qianzhimu.mgt.entity.TmBaseInfo;
 import com.qianzhimu.mgt.query.TmBaseInfoQueryCriteria;
 import org.springframework.data.domain.Pageable;
-import java.util.Map;
-import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+import java.util.Set;
 
 
 public interface TmBaseInfoService {
@@ -18,7 +19,7 @@ public interface TmBaseInfoService {
     * @param pageable 分页参数
     * @return Map<String,Object>
     */
-    Map<String,Object> queryAll(TmBaseInfoQueryCriteria criteria, Pageable pageable);
+    Object queryAll(TmBaseInfoQueryCriteria criteria, Pageable pageable);
 
     /**
     * 查询所有数据不分页
@@ -60,4 +61,34 @@ public interface TmBaseInfoService {
     * @param ids /
     */
     void deleteAll(Long[] ids);
+
+    /**
+     * 更新标价
+     * @param tmId 商标ID
+     * @param prev 更新前价格
+     * @param current 更新后价格
+     * @return 影响行数
+     */
+    int updateTagPrice(Long tmId, Double prev, Double current);
+
+    /**
+     * 更新底价
+     * @param tmId 商标ID
+     * @param prev 更新前价格
+     * @param current 更新后价格
+     * @return 影响行数
+     */
+    int updateFloorPrice(Long tmId, Double prev, Double current);
+
+    /**
+     * 商标下架
+     * @param tmIdSet 商标ID集合
+     */
+    void down(Set<Long> tmIdSet);
+
+    /**
+     * 商标上架
+     * @param tmIdSet 商标ID集合
+     */
+    void up(Set<Long> tmIdSet);
 }

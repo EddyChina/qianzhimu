@@ -5,7 +5,7 @@ import com.qianzhimu.api.mapper.TradeMarkerMapper;
 import com.qianzhimu.api.repository.TradeMarkerRepository;
 import com.qianzhimu.api.utils.PageUtil;
 import com.qianzhimu.api.utils.QueryHelp;
-import com.qianzhimu.ows.dto.TradeMarkerDTO;
+import com.qianzhimu.ows.dto.OwsTradeMarkerDTO;
 import com.qianzhimu.ows.query.TradeMarkerQueryCriteria;
 import com.qianzhimu.ows.service.TradeMarkerService;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ public class TradeMarkerServiceImpl implements TradeMarkerService {
     }
 
     @Override
-    public TradeMarkerDTO getByRegId(String regId) {
+    public OwsTradeMarkerDTO getByRegId(String regId) {
         return tradeMarkerMapper.toDto(this.tradeMarkerRepository.getByRegId(regId));
     }
 }

@@ -20,10 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +31,7 @@ public class TmBaseInfoServiceImpl implements TmBaseInfoService {
     private final TmBaseInfoMapper tmBaseInfoMapper;
 
     @Override
-    public Map<String,Object> queryAll(TmBaseInfoQueryCriteria criteria, Pageable pageable){
+    public Object queryAll(TmBaseInfoQueryCriteria criteria, Pageable pageable){
         Page<TmBaseInfo> page = tmBaseInfoRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder),pageable);
         return PageUtil.toPage(page.map(tmBaseInfoMapper::toDto));
     }
@@ -80,6 +77,44 @@ public class TmBaseInfoServiceImpl implements TmBaseInfoService {
         for (Long id : ids) {
             tmBaseInfoRepository.deleteById(id);
         }
+    }
+
+    /**
+     * @param tmId    商标ID
+     * @param prev    更新前价格
+     * @param current 更新后价格
+     * @return
+     */
+    @Override
+    public int updateTagPrice(Long tmId, Double prev, Double current) {
+        return this.tmBaseInfoRepository.updateTagPrice(tmId, prev, current);
+    }
+
+    /**
+     * @param tmId    商标ID
+     * @param prev    更新前价格
+     * @param current 更新后价格
+     * @return
+     */
+    @Override
+    public int updateFloorPrice(Long tmId, Double prev, Double current) {
+        return this.tmBaseInfoRepository.updateFloorPrice(tmId, prev, current);
+    }
+
+    /**
+     * @param tmIdSet 商标ID集合
+     */
+    @Override
+    public void down(Set<Long> tmIdSet) {
+        this.tmBaseInfoRepository.down(tmIdSet);
+    }
+
+    /**
+     * @param tmIdSet 商标ID集合
+     */
+    @Override
+    public void up(Set<Long> tmIdSet) {
+        this.tmBaseInfoRepository.up(tmIdSet);
     }
 
     @Override

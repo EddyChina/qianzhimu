@@ -2,7 +2,7 @@ module.exports = {
   /**
    * @description 网站标题
    */
-  title: 'dokit',
+  title: '知目科技',
   /**
    * @description 是否显示 tagsView
    */

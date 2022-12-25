@@ -1,11 +1,11 @@
 package com.qianzhimu.mgt.handler;
 
+import com.qianzhimu.api.utils.ThrowableUtil;
 import com.qianzhimu.mgt.base.Response;
 import com.qianzhimu.mgt.exception.BadRequestException;
 import com.qianzhimu.mgt.exception.CommonBizException;
 import com.qianzhimu.mgt.exception.EntityExistException;
 import com.qianzhimu.mgt.exception.OverRateLimitException;
-import com.qianzhimu.api.utils.ThrowableUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
      * @return
      */
     private ResponseEntity<ApiError> buildResponseEntity(ApiError apiError) {
-        return new ResponseEntity<>(apiError, valueOf(apiError.getCode()));
+        return new ResponseEntity<>(apiError, valueOf(200));
     }
 
     @ExceptionHandler(CommonBizException.class)

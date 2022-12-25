@@ -4,23 +4,27 @@ import com.qianzhimu.mgt.annotation.Query;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Data
 public class TradeMarkerQueryCriteria implements Serializable {
+    // 精确
+    @Query(type = Query.Type.IN)
+    private Set<Integer> category = null;
 
-    @Query(type = Query.Type.EQUAL)
-    private Integer category;
+    @Query(type = Query.Type.IN)
+    private Set<Integer> lengthRange = null;
 
-    @Query(propName = "contentType", type = Query.Type.IN)
-    private Set<String> contentType = new HashSet<>(16);
+    // 模糊
+    @Query(type = Query.Type.IN)
+    private Set<Integer> contentType;
 
-    @Query(propName = "tagPrice", type = Query.Type.BETWEEN)
-    private List<Double> tagPrice = new ArrayList<>(2);
+    @Query(type = Query.Type.BETWEEN, propName = "tagPrice")
+    private List<Double> price;
 
-    @Query(type = Query.Type.EQUAL)
-    private Integer lengthRanger;
+    @Query(type = Query.Type.INNER_LIKE)
+    private String nameLike;
+
+    private SortBy sortBy;
 }

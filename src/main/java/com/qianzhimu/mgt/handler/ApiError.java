@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 public class ApiError {
     private Integer code = 400;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime timestamp;
+    private LocalDateTime respTime;
     private String message;
 
     private ApiError() {
-        timestamp = LocalDateTime.now();
+        respTime = LocalDateTime.now();
     }
 
     public static ApiError error(String message){

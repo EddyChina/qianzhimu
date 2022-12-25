@@ -1,5 +1,6 @@
 package com.qianzhimu.mgt.base;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ public class Response implements Serializable {
     private String message;
     private Object data;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date respTime;
 
     public static Response SUCCESS(Object data){

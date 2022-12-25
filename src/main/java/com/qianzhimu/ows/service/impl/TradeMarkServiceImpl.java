@@ -25,7 +25,6 @@ public class TradeMarkServiceImpl implements TradeMarkService {
      */
     @Override
     public void upload(File file) {
-
         try(ExcelReader excelReader = ExcelUtil.getReader(file)){
             List<TradeMarker> tmList = new ArrayList<>();
             String userName = SecurityUtils.getCurrentUsername();
@@ -40,6 +39,7 @@ public class TradeMarkServiceImpl implements TradeMarkService {
                 tm.setRegId(regId);
                 tm.setTagPrice(price);
                 tm.setCreateBy(userName);
+                tm.setState(0); // 默认上架
 
                 tmList.add(tm);
             }

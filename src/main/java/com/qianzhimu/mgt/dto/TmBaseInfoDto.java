@@ -19,7 +19,7 @@ public class TmBaseInfoDto implements Serializable {
     // 适用项目
     private String domain;
     // 中英文类型
-    private String contentType;
+    private Integer contentType;
     // 注册日期
     private Timestamp regDate;
     // 有效日期

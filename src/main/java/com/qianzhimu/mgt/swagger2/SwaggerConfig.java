@@ -31,8 +31,8 @@ import static springfox.documentation.schema.AlternateTypeRules.newRule;
 /**
  * api页面 /doc.html
  */
-@Configuration
-@EnableSwagger2
+//@Configuration
+//@EnableSwagger2
 public class SwaggerConfig {
 
     @Value("${jwt.header}")
@@ -79,7 +79,7 @@ public class SwaggerConfig {
 /**
  *  将Pageable转换展示在swagger中
  */
-@Configuration
+//@Configuration
 class SwaggerDataConfig {
 
     @Bean
