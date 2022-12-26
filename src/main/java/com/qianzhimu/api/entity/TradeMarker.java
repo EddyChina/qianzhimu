@@ -7,6 +7,7 @@ import com.qianzhimu.api.utils.StringUtils;
 import com.qianzhimu.mgt.base.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnTransformer;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -74,6 +75,9 @@ public class TradeMarker extends BaseEntity implements Serializable {
     private Double floorPrice;
 
     private Integer lengthRanger;
+
+    @ColumnTransformer(read = "case when floor_price>=5000 then floor_price*0.2 else 1000 end")
+    private Double commission;
 
     @Override
     public boolean equals(Object o) {

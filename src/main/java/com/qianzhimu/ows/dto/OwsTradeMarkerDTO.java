@@ -19,6 +19,8 @@ public class OwsTradeMarkerDTO implements Serializable {
     private Date regDate;
     private String picPath;
 
+    private Double commission;
+
     public String getContentType() {
         /**
          * contentTypeMap["图形"] = 0

@@ -20,7 +20,7 @@ public class OwsTradeMarkerController {
 
     private final TradeMarkerService tradeMarkerService;
 
-    @GetMapping("/list")
+    @PostMapping("/list")
     public Response query(@RequestBody TradeMarkerQueryCriteria criteria
             , @RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         this.checkQueryCriteria(criteria);
@@ -33,7 +33,17 @@ public class OwsTradeMarkerController {
             pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sortBy.getDirection()), sortBy.getPropertyName()));
         }
 
+        /**
+         * 底价5000以上的，最终成交价=底价+底价*20%的服务费+1000元转让费
+         * 底价5000以下的，最终成交价=底价+1000服务费+1000元转让费
+         */
+
         return Response.SUCCESS(this.tradeMarkerService.queryAll(criteria, pageable));
+    }
+
+    @GetMapping("/r/{regId}")
+    public Response query(@PathVariable String regId) {
+        return Response.SUCCESS(this.tradeMarkerService.getByRegId(regId));
     }
 
     private void checkQueryCriteria(TradeMarkerQueryCriteria queryCriteria) {
