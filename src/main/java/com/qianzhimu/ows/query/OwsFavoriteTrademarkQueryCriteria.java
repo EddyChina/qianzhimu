@@ -7,13 +7,13 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Data
-public class OwsFavoriteTrademarkerQueryCriteria{
+public class OwsFavoriteTrademarkQueryCriteria {
 
     // 精确
     @Query
     private Long accountId;
 
-    @Query(type = Query.Type.INNER_LIKE, propName = "regId", joinName = "tradeMarker")
+    @Query(type = Query.Type.EQUAL, propName = "regId", joinName = "tradeMarker")
     private String regId;
 
      /** BETWEEN */

@@ -105,7 +105,7 @@ public class AccountController extends BaseOwsController {
     @PostMapping(value = "/updatePass")
     @Limit(name = "注册接口限流保护", period = 300, count = 3, key = "ows:register", prefix = "limit", limitType = LimitType.IP)
     public Response updatePass(@Validated @RequestBody UserPassVo passVo, HttpServletRequest request) throws Exception {
-        Long accountId = super.getLoginAccountId(request);
+        Long accountId = super.getLoginAccountId(request, true);
         // get account
         OwsAccount accountDTO = this.accountService.get(accountId);
 

@@ -22,10 +22,11 @@ import java.util.Date;
 @Getter
 @Setter
 @Table(name = "tm_base_info")
-public class TradeMarker extends BaseEntity implements Serializable {
+public class OwsTradeMarker extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    @JsonIgnore
     private Long id;
 
     @NotBlank
@@ -37,7 +38,6 @@ public class TradeMarker extends BaseEntity implements Serializable {
     @NotNull
     private Integer category;
 
-    @NotBlank
     private String domain;
 
     @NotNull
@@ -45,11 +45,8 @@ public class TradeMarker extends BaseEntity implements Serializable {
 
     private int state;
 
-    @NotNull
-    @JsonIgnore
     private Date regDate;
 
-    @NotNull
     @JsonIgnore
     private Date validDate;
 
@@ -64,6 +61,7 @@ public class TradeMarker extends BaseEntity implements Serializable {
 
     @JsonIgnore
     private String ownerContact;
+    @JsonIgnore
     private Integer ownerHolderCnt;
 
     private String picPath;
@@ -71,12 +69,12 @@ public class TradeMarker extends BaseEntity implements Serializable {
     @JsonIgnore
     private Double tagPrice;
 
-    @JsonIgnore
     private Double floorPrice;
 
     private Integer lengthRanger;
 
     @ColumnTransformer(read = "case when floor_price>=5000 then floor_price*0.2 else 1000 end")
+    @Column(insertable = false, updatable = false)
     private Double commission;
 
     @Override
@@ -84,7 +82,7 @@ public class TradeMarker extends BaseEntity implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TradeMarker that = (TradeMarker) o;
+        OwsTradeMarker that = (OwsTradeMarker) o;
 
         return regId.equals(that.regId);
     }

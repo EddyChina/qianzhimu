@@ -37,7 +37,7 @@ public class OwsOrderController extends BaseOwsController {
     @ApiOperation("查询OwsOrderService")
     @GetMapping()
     public Response query(OwsOrderQueryCriteria criteria, Pageable pageable, HttpServletRequest request){
-        Long loginAccountId = super.getLoginAccountId(request);
+        Long loginAccountId = super.getLoginAccountId(request, true);
         criteria.setAccountId(loginAccountId);
         return Response.SUCCESS(owsOrderService.queryAll(criteria,pageable));
     }
@@ -46,7 +46,7 @@ public class OwsOrderController extends BaseOwsController {
     @ApiOperation("新增OwsOrderService")
     @PostMapping
     public Response create(@Validated @RequestBody OwsOrder resources, HttpServletRequest request){
-        Long loginAccountId = super.getLoginAccountId(request);
+        Long loginAccountId = super.getLoginAccountId(request, true);
         resources.setAccountId(loginAccountId);
         return Response.SUCCESS(owsOrderService.create(resources));
     }

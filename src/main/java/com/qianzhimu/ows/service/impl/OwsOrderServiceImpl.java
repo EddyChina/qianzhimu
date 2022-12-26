@@ -1,9 +1,7 @@
 package com.qianzhimu.ows.service.impl;
 
-import com.qianzhimu.api.utils.FileUtil;
-import com.qianzhimu.api.utils.PageUtil;
-import com.qianzhimu.api.utils.QueryHelp;
-import com.qianzhimu.api.utils.ValidationUtil;
+import com.qianzhimu.api.repository.TradeMarkerRepository;
+import com.qianzhimu.api.utils.*;
 import com.qianzhimu.mgt.base.Response;
 import com.qianzhimu.mgt.exception.CommonBizException;
 import com.qianzhimu.ows.dto.OwsOrderDto;
@@ -32,6 +30,8 @@ public class OwsOrderServiceImpl implements OwsOrderService {
 
     private final OwsOrderRepository owsOrderRepository;
 
+    private final TradeMarkerRepository tradeMarkerRepository;
+
     private final OwsOrderMapper owsOrderMapper;
 
     private final TradeMarkerService tradeMarkerService;
@@ -58,8 +58,15 @@ public class OwsOrderServiceImpl implements OwsOrderService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public OwsOrderDto create(OwsOrder resources) {
-        // 查询指定的商标是否存在
-        if (this.tradeMarkerService.getByRegId(resources.getTmRegId()) == null) {
+        /*
+         * 查询指定的商标是否存在
+         * 但由于有业务订单（例如商标注册/续展等），这类订单的regId是以"setting"开头
+         * 这类订单不做存在性判断
+         */
+        String regId = StringUtils.trimToEmpty(resources.getTmRegId());
+        boolean tmOrder = !regId.startsWith("setting");
+
+        if (tmOrder && !this.tradeMarkerRepository.existsByRegId(regId)) {
             throw new CommonBizException(Response.RespCode.RESOURCE_404, "下单商标不存在");
         }
         resources.setState(0); // 未支付

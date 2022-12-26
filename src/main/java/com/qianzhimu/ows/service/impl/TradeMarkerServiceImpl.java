@@ -1,6 +1,6 @@
 package com.qianzhimu.ows.service.impl;
 
-import com.qianzhimu.api.entity.TradeMarker;
+import com.qianzhimu.api.entity.OwsTradeMarker;
 import com.qianzhimu.api.mapper.TradeMarkerMapper;
 import com.qianzhimu.api.repository.TradeMarkerRepository;
 import com.qianzhimu.api.utils.PageUtil;
@@ -23,7 +23,7 @@ public class TradeMarkerServiceImpl implements TradeMarkerService {
 
     @Override
     public Object queryAll(TradeMarkerQueryCriteria criteria, Pageable pageable) {
-        Page<TradeMarker> all = this.tradeMarkerRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root, criteria, criteriaBuilder), pageable);
+        Page<OwsTradeMarker> all = this.tradeMarkerRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root, criteria, criteriaBuilder), pageable);
 
         return PageUtil.toPage(all.map(tradeMarkerMapper::toDto));
     }

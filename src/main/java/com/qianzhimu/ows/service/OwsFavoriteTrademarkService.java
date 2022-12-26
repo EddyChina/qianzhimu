@@ -1,15 +1,15 @@
 package com.qianzhimu.ows.service;
 
-import com.qianzhimu.ows.dto.OwsFavoriteTrademarkerDto;
-import com.qianzhimu.ows.entity.OwsFavoriteTrademarker;
-import com.qianzhimu.ows.query.OwsFavoriteTrademarkerQueryCriteria;
+import com.qianzhimu.ows.dto.OwsFavoriteTrademarkDto;
+import com.qianzhimu.ows.entity.OwsFavoriteTrademark;
+import com.qianzhimu.ows.query.OwsFavoriteTrademarkQueryCriteria;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Map;
 
 
-public interface OwsFavoriteTrademarkerService {
+public interface OwsFavoriteTrademarkService {
 
     /**
     * 查询数据分页
@@ -17,14 +17,14 @@ public interface OwsFavoriteTrademarkerService {
     * @param pageable 分页参数
     * @return Map<String,Object>
     */
-    Map<String,Object> queryAll(OwsFavoriteTrademarkerQueryCriteria criteria, Pageable pageable);
+    Map<String,Object> queryAll(OwsFavoriteTrademarkQueryCriteria criteria, Pageable pageable);
 
     /**
     * 查询所有数据不分页
     * @param criteria 条件参数
     * @return List<OwsFavoriteTrademarkerDto>
     */
-    List<OwsFavoriteTrademarkerDto> queryAll(OwsFavoriteTrademarkerQueryCriteria criteria);
+    List<OwsFavoriteTrademarkDto> queryAll(OwsFavoriteTrademarkQueryCriteria criteria);
 
 
     /**
@@ -32,12 +32,15 @@ public interface OwsFavoriteTrademarkerService {
     * @param resources /
     * @return OwsFavoriteTrademarkerDto
     */
-    OwsFavoriteTrademarkerDto create(OwsFavoriteTrademarker resources);
+    OwsFavoriteTrademark favorite(OwsFavoriteTrademark resources);
 
+    void unFavorite(String regId, Long accountId);
 
     /**
     * 多选删除
     * @param ids /
     */
     void deleteAll(Long[] ids);
+
+    boolean getFavorite(String regId, Long accountId);
 }

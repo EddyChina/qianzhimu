@@ -21,6 +21,8 @@ public class OwsTradeMarkerDTO implements Serializable {
 
     private Double commission;
 
+    private boolean isFavorite;
+
     public String getContentType() {
         /**
          * contentTypeMap["图形"] = 0

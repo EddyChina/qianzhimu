@@ -81,11 +81,13 @@ public class Response implements Serializable {
 
         SYS_ERROR("900000", "系统异常"),
         REQUEST_TOO_MUCH("900002", "访问受限"),
-        RESOURCE_404("900001", "找不到所需要的资源")
+        RESOURCE_404("900001", "找不到所需要的资源"),
+        TRADE_MARK_404("900002", "商标信息不存在"),
+        DATA_DUPLICATE("900003", "重复数据")
         ;
 
-        private String code;
-        private String message;
+        private final String code;
+        private final String message;
 
         RespCode(String code, String message) {
             this.code = code;

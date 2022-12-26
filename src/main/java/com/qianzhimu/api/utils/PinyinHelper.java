@@ -1,7 +1,6 @@
 package com.qianzhimu.api.utils;
 
-import com.qianzhimu.api.constant.Constant;
-import com.qianzhimu.api.entity.TradeMarker;
+import com.qianzhimu.api.entity.OwsTradeMarker;
 import me.majiajie.tinypinyin.Pinyin;
 
 public class PinyinHelper{
@@ -27,7 +26,7 @@ public class PinyinHelper{
             System.out.println((num >> 2) & 1);
         }*/
 
-        TradeMarker tm = new TradeMarker();
+        OwsTradeMarker tm = new OwsTradeMarker();
 
         tm.setName("拼音abc");
 

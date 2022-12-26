@@ -1,9 +1,12 @@
 package com.qianzhimu.ows.controller;
 
 import cn.hutool.core.collection.CollectionUtil;
+import com.qianzhimu.mgt.base.BaseOwsController;
 import com.qianzhimu.mgt.base.Response;
+import com.qianzhimu.ows.dto.OwsTradeMarkerDTO;
 import com.qianzhimu.ows.query.SortBy;
 import com.qianzhimu.ows.query.TradeMarkerQueryCriteria;
+import com.qianzhimu.ows.service.OwsFavoriteTrademarkService;
 import com.qianzhimu.ows.service.TradeMarkerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -11,14 +14,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Set;
 
 @RestController
 @RequestMapping("/ows/tm")
 @RequiredArgsConstructor
-public class OwsTradeMarkerController {
+public class OwsTradeMarkerController extends BaseOwsController {
 
     private final TradeMarkerService tradeMarkerService;
+    private final OwsFavoriteTrademarkService favoriteTrademarkerService;
 
     @PostMapping("/list")
     public Response query(@RequestBody TradeMarkerQueryCriteria criteria
@@ -42,8 +47,20 @@ public class OwsTradeMarkerController {
     }
 
     @GetMapping("/r/{regId}")
-    public Response query(@PathVariable String regId) {
-        return Response.SUCCESS(this.tradeMarkerService.getByRegId(regId));
+    public Response query(@PathVariable String regId, HttpServletRequest request) {
+        OwsTradeMarkerDTO tradeMarkerDTO = this.tradeMarkerService.getByRegId(regId);
+
+        // 查询是否是登陆用户收藏过的商标
+        // 获取当前登陆用户id
+        Long accountId = super.getLoginAccountId(request, false);
+        if (accountId != null) {
+            boolean favorite = this.favoriteTrademarkerService.getFavorite(regId, accountId);
+            if (favorite) {
+                tradeMarkerDTO.setFavorite(true);
+            }
+        }
+
+        return Response.SUCCESS();
     }
 
     private void checkQueryCriteria(TradeMarkerQueryCriteria queryCriteria) {
